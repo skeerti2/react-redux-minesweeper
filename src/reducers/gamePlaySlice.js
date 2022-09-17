@@ -9,12 +9,12 @@ const gamePlaySlice = createSlice({
     startGame(state, action) {
       return 1;
     },
-    stopGame(state, action) {
+    showBoard(state, action) {
       return 0;
     },
   },
 });
 
-export const { startGame, stopGame } = gamePlaySlice.actions;
+export const { startGame, showBoard } = gamePlaySlice.actions;
 
 export default gamePlaySlice.reducer;

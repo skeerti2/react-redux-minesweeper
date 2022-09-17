@@ -3,28 +3,28 @@ import Board from './Board';
 import store from '../store.js';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { startGame, stopGame } from '../reducers/gamePlaySlice.js';
 import { setMines, resetBoard } from '../reducers/boardSlice.js';
-import { startGame, stopGame } from '../reducers/gamePlaySlice';
+import { startGame, showBoard } from '../reducers/gamePlaySlice';
 
 export default function Game() {
   const gameState = useSelector((state) => state.gamePlay);
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(setMines());
+    if(gameState === 1){
+      dispatch(setMines());
+    }
   }, [gameState]);
 
   function handleGameState() {
       dispatch(resetBoard());
-      dispatch(stopGame())
+      // dispatch(stopGame())
   }
   return (
     <div className="container">
       <button onClick={handleGameState}>
         Restart
       </button>
-      <Board />
+      <Board gameEnd={gameState}/>
     </div>
   );
 }
